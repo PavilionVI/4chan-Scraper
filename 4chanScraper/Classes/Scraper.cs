@@ -58,7 +58,7 @@ class Scraper
             var url = string.Format(ImageURL, _thread.Board, p.tim, p.ext);
             var name = (useName ? p.tim : p.filename) + p.ext;
 
-            string threadDir = Path.Combine(dir, _thread.Thread);
+            var threadDir = Path.Combine(dir, _thread.Thread);
             Directory.CreateDirectory(threadDir);
 
             var fBytes = await _client.GetByteArrayAsync(url);
