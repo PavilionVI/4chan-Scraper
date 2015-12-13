@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 public class Parser
 {
-    private  Regex _reg;
+    private Regex _reg;
     private readonly string _url;
 
     public Parser(string url)
@@ -27,7 +27,11 @@ public class Parser
 
         return Task.Run(() =>
         {
-            return new ThreadData() { Board = parsed.First(), Thread = parsed.Last() };
+            return new ThreadData()
+            {
+                Board = parsed.First(),
+                Thread = parsed.Last()
+            };
         });
     }
 

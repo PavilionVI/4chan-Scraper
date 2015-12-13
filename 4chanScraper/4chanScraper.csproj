@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>Core\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Scraper.cs" />
+    <Compile Include="Helpers\TextBoxCue.cs" />
     <Compile Include="Helpers\JsonUtil.cs" />
     <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
@@ -60,7 +61,7 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\Program.cs" />
-    <Compile Include="Helpers\Parser.cs" />
+    <Compile Include="Classes\Parser.cs" />
     <Compile Include="Helpers\TitleBuilder.cs" />
     <Compile Include="Models\FThread.cs" />
     <Compile Include="Models\Post.cs" />
@@ -90,10 +91,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="Core\App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon.ico" />
+    <Content Include="Core\Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

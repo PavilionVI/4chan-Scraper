@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -20,8 +16,8 @@ namespace _4chanScraper
 
             _fbd = new FolderBrowserDialog
             {
-                Description = "Select a base directory. A sub-folder for the thread will be created automatically.",
-                RootFolder = Environment.SpecialFolder.Desktop
+                RootFolder = Environment.SpecialFolder.Desktop,
+                Description = "Select a base directory. A sub-folder for the thread will be created automatically."
             };
         }
 
@@ -41,17 +37,21 @@ namespace _4chanScraper
             pbMain.Value = 0;
 
             var parser = new Parser(txtThread.Text);
-            if (!parser.IsValid()) return;
+            if (!parser.IsValid())
+                return;
 
             ToggleGroupBoxes(false);
             TitleBuilder.Build(this, "Initializing");
 
-            var scraper = new Scraper(await parser.BuildThreadData(), UpdateProgress);
+            var threadData = await parser.BuildThreadData();
+            var scraper = new Scraper(threadData, UpdateProgress);
 
             var files = await scraper.CollectFileURLs(cbWEBM.Checked, cbDuplicates.Checked);
-            if (files == null) return;
+            if (files == null)
+                return;
 
             pbMain.Maximum = files.Count;
+
             await Task.WhenAll(files.Select(p => scraper.DownloadFileAsync(this, p, rbUID.Checked, txtPath.Text)));
 
             ToggleGroupBoxes(true);
@@ -77,7 +77,13 @@ namespace _4chanScraper
 
         private void txtThread_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) btnStart_Click(sender, EventArgs.Empty);
+            if (e.KeyCode == Keys.Enter)
+                btnStart_Click(sender, EventArgs.Empty);
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            TextBoxCue.SetCue(txtThread, "Thread URL");
         }
     }
 }

@@ -187,6 +187,7 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "4chan Scraper | Idle";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.gbPath.ResumeLayout(false);
             this.gbPath.PerformLayout();
             this.gbOptions.ResumeLayout(false);
